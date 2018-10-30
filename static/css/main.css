@@ -1,0 +1,197 @@
+body{
+	font-family: Arial !important;
+	margin: 0;
+
+}
+
+*, ::after, ::before{
+	box-sizing: border-box;
+}
+
+#conteiner{
+	padding-top: 70px;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.align-center{
+	text-align: center;
+}
+
+.when_login_logout{
+	padding: 40px;
+	font-size: 30px !important;
+
+}
+
+/* *** NAVBAR *** */
+
+#nav{
+ 	background-color: #333;
+ 	position: fixed;
+ 	width: 100%;
+ 	height: 70px;
+ 	
+}
+
+#nav ul{
+    list-style-type: none;
+    font-size: 25px;
+    margin: 0;
+	padding: 0;
+}
+
+#nav li{
+	display: inline-block;
+}
+
+/* Floating left in navbar */
+.li-right{
+	float: right;
+}
+
+/* Links in navbar */
+#nav a{
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	line-height: 70px;
+	text-decoration: none;
+	color: white;
+
+}
+
+/* Home button link */
+#home a{
+	font-size: 30px !important;
+}
+
+/* Mouse on Home button */
+#home a:hover{
+	color:black !important;
+}
+
+/* Register button link */
+#register a{
+	width: 120px !important;
+}
+
+/* Mouse on link style */
+#nav a:hover {
+    background-color: white;
+    color: gray;
+}
+
+/* *** Style for login/register page *** */
+
+
+.inputs_login{
+	width: 450px;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	font-size: 17px;
+}
+
+.buttons_login{
+	width: 450px;
+	padding: 10px;
+	border: 1px solid #3399ff;
+	border-radius: 4px;
+	background-color: #3399ff;
+	color: white;
+	font-size: 25px;
+}
+
+.buttons_login:hover{
+	background-color: #0099ff;
+}
+
+/* Style of messege*/
+.message{
+	width: 450px;
+	padding: 10px;
+	border: 1px solid #ffcc66;
+	border-radius: 6px;
+	background-color: #ffcc66;
+	color: #cc6600;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.succes{
+	border-color: #009900;
+	background-color: #33cc33;
+	color: #333300;
+}
+
+.failed{
+	border-color: #ff0000;
+	background-color: #ff5050;
+	color: #800000;
+}
+
+/* *** Style of settings page *** */
+
+#settings{
+	font-size: 20px !important;
+}
+
+#settings form{
+	margin: 5px;
+}
+
+#settings h2{
+	text-align: left;
+	margin-left: 30%;
+}
+
+#settings label{
+	margin-left: 35%;
+	width: 150px;
+	display: block;
+	float: left;
+	padding: 7px;
+}
+
+#settings input{
+	width: 170px;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+
+#settings button{
+	margin-left: 55%;
+	margin-top: 10px;
+	padding: 4px 8px;
+	border: 1px solid #3399ff;
+	border-radius: 5px;
+	background-color: #3399ff;
+	color: white;
+	font-size: 15px;
+
+}
+
+#age{
+	width: 50px !important;
+}
+
+#settings input[type="radio"]{
+	width: 20px;
+	margin: 12px 2px 11px 5px;
+}
+
+#settings span{
+	font-size: 15px;
+	padding: 10px 5px 10px 0px;
+}
+
+.setting_message {
+	margin-left: 33%;	
+	margin-top: 10px;
+}

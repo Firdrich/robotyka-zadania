@@ -1,10 +1,15 @@
 from flask import Flask, session, redirect, url_for, request, render_template, flash
 from database import DataBase
 from profile import Profile
+from flask_session import Session
 import sys
 
+#configuring stuff
 app = Flask(__name__)
 app.secret_key = "jdu7x3j8e83iej7eeh8e"
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 
 @app.route('/')
@@ -14,7 +19,7 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
 	db = DataBase()
-	print(session['logged_in'], file=sys.stderr)
+	#print(session['logged_in'], file=sys.stderr)
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']

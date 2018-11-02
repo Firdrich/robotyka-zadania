@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block body %}
-{% if session['logged_in'] == False or session['logged_in'] is none %}
+{% if session.get("logged_in") == False or session.get("logged_in") is none %}
 <div class="align-center">
     <h1>Register</h1>
     <form action="/register" method="POST" class="login">

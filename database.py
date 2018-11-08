@@ -69,3 +69,14 @@ class DataBase():
     def change_password(self,newpassword,username):
         self.cursor.execute("UPDATE users SET password=\"%s\" WHERE username=\"%s\"" % (newpassword,username))
         self.conn.commit()
+
+    def add_exercise(self,time,exercise):
+        """Adds new exercise time and content into the database"""
+        self.cursor.execute("INSERT INTO exercises(time_answers, content) VALUES(\"%s\", \"%s\")" % (time, exercise))
+        self.conn.commit()
+
+    def get_exercise(self,id):
+        """Gets exercise from database by id"""
+        self.cursor.execute("SELECT FROM exercises WHERE id=\"%s\"" % id)
+        exercise = self.cursor.fetchone()
+        return exercise

@@ -36,7 +36,7 @@ class DataBase():
 
     def get_user_admin(self,username): #check if user is admin
         self.cursor.execute("SELECT admin FROM users WHERE username=\"%s\"" % username)
-        admin = self.cursor.fetchone()
+        admin = self.cursor.fetchone()[0]
         return admin #returns either 0 or 1
 
     def login_to_account(self,username,password):
@@ -60,9 +60,9 @@ class DataBase():
             self.cursor.execute("UPDATE settings SET \"%s\"=\"%i\" WHERE user_id=\"%i\"" % (parameter,name,self.get_user_id(username)))
         else:
             self.cursor.execute("UPDATE settings SET \"%s\"=\"%s\" WHERE user_id=\"%i\"" % (parameter,name,self.get_user_id(username)))
-        self.conn.commit()   
+        self.conn.commit()
 
-    def change_email(self,newmail,username):   
+    def change_email(self,newmail,username):
         self.cursor.execute("UPDATE users SET email=\"%s\" WHERE username=\"%s\"" % (newmail,username))
         self.conn.commit()
 

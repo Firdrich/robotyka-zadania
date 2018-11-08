@@ -19,15 +19,18 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
 	db = DataBase()
-	#print(session['logged_in'], file=sys.stderr)
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
 		if db.login_to_account(username,password):
 			session['logged_in'] = True
 			session['username'] = request.form['username']
+			print(db.get_user_admin(username))
 			if db.get_user_admin(username) == 1:
 				session['admin'] = True
+				#return "admin"
+			#else:
+				#return "not admin"
 			return render_template('index.html')
 		else:
 			session['logged_in'] = False

@@ -10,11 +10,11 @@
         <li class="li-right">
             <a href="/settings">Settings</a>
         </li>
-        {% if 'admin' in session %}
-        <li class="li-right">
-            <a href="/admin">Admin</a>
-        </li>
-        {% endif %}
+          {% if session['admin'] == true %}
+            <li class="li-right">
+                <a href="/admin">Admin</a>
+            </li>
+          {% endif %}
         {% else %}
         <li class="li-right" id="register">
         	<a href="/register">Register</a>

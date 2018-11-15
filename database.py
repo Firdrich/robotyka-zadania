@@ -70,9 +70,9 @@ class DataBase():
         self.cursor.execute("UPDATE users SET password=\"%s\" WHERE username=\"%s\"" % (newpassword,username))
         self.conn.commit()
 
-    def add_exercise(self,time,exercise):
+    def add_exercise(self,time,exercise,header):
         """Adds new exercise time and content into the database"""
-        self.cursor.execute("INSERT INTO exercises(time_answers, content) VALUES(\"%s\", \"%s\")" % (time, exercise))
+        self.cursor.execute("INSERT INTO exercises(time_answers, content, header) VALUES(\"%s\", \"%s\", \"%s\")" % (time, exercise, header))
         self.conn.commit()
 
     def get_exercise(self,id):

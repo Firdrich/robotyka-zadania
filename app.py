@@ -28,9 +28,6 @@ def login():
 			print(db.get_user_admin(username))
 			if db.get_user_admin(username) == 1:
 				session['admin'] = True
-				#return "admin"
-			#else:
-				#return "not admin"
 			return render_template('index.html')
 		else:
 			session['logged_in'] = False
@@ -105,7 +102,14 @@ def settings():
 
 @app.route('/admin', methods=['GET','POST'])
 def admin():
-    return render_template('index.html')
+	db = DataBase()
+	if request.method == 'POST': 	#if new exercise is added through form
+		exercise_header = request.form.get('header')
+		exercise_content = request.form.get('content')
+		exercise_time = request.form.get('time')
+		db.add_exercise(exercise_time, exercise_content, exercise_header) #adds new exercise according to form
+	else:
+		return render_template('admin.html')
 #@app.route('/profiledata',methods=['GET','POST'])
 #def profiledata():
 

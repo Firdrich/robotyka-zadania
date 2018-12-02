@@ -72,11 +72,51 @@ class DataBase():
 
     def add_exercise(self,time,exercise,header):
         """Adds new exercise time and content into the database"""
-        self.cursor.execute("INSERT INTO exercises(time_answers, content, header) VALUES(\"%s\", \"%s\", \"%s\")" % (time, exercise, header))
+        self.cursor.execute("INSERT INTO exercises(time_answers, content, title) VALUES(\"%s\", \"%s\", \"%s\")" % (time, exercise, header))
         self.conn.commit()
 
-    def get_exercise(self,id):
+    def delete_exercise(self,id):
+        """Deletes exercise from database"""
+        self.cursor.execute("DELETE * FROM exercises WHERE id=\"%s\"" % id)
+        self.conn.commit()
+
+    def get_all_exercises():
+        """Gets all exercises"""
+        self.cursor.execute("SELECT title, content, time_answers FROM exercises")
+        exercise = self.cursor.fetchall()
+        return exercise
+        # Object reational mapper, flask
+
+    def get_exercise(self, id):
         """Gets exercise from database by id"""
-        self.cursor.execute("SELECT FROM exercises WHERE id=\"%s\"" % id)
+        self.cursor.execute("SELECT * FROM exercises WHERE id=\"%s\"" % id)
         exercise = self.cursor.fetchone()
         return exercise
+
+    def get_exercise_id(self):
+        """Gets all exercise ids"""
+        self.cursor.execute("SELECT id FROM exercises")
+        id = self.cursor.fetchall()
+        id =  list(map(lambda id_tuple: id_tuple[0], id))
+        return id
+
+    def get_exercise_titles(self):
+        """Gets all exercise titles"""
+        self.cursor.execute("SELECT title FROM exercises")
+        title = self.cursor.fetchall()
+        title = list(map(lambda id_tuple: id_tuple[0], title))
+        return title
+
+    def get_exercise_content(self):
+        """Gets all exercise contents"""
+        self.cursor.execute("SELECT content FROM exercises")
+        content = self.cursor.fetchall()
+        content = list(map(lambda id_tuple: id_tuple[0], content))
+        return content
+
+    def get_exercise_time(self):
+        """Gets all exercises times to answer"""
+        self.cursor.execute("SELECT time_answers FROM exercises")
+        time_answers = self.cursor.fetchall()
+        time_answers = list(map(lambda id_tuple: id_tuple[0], time_answers))
+        return time_answers

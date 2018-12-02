@@ -100,6 +100,13 @@ def settings():
 
 	return render_template('settings.html', profile = profile)
 
+@app.route('/posts/<id>', methods=['POST'])
+def del_post(id):
+	db = DataBase()
+	db.delete_exercise(id)
+	return redirect(url_for('admin'))
+
+
 @app.route('/admin', methods=['GET','POST'])
 def admin():
 	db = DataBase()
@@ -108,8 +115,11 @@ def admin():
 		exercise_content = request.form.get('content')
 		exercise_time = request.form.get('time')
 		db.add_exercise(exercise_time, exercise_content, exercise_header) #adds new exercise according to form
-	else:
-		return render_template('admin.html')
+	times = db.get_exercise_time()
+	content = db.get_exercise_content()
+	titles = db.get_exercise_titles()
+	id = db.get_exercise_id()
+	return render_template('admin.html',times=times, content=content, titles=titles, id=id)
 #@app.route('/profiledata',methods=['GET','POST'])
 #def profiledata():
 

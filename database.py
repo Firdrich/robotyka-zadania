@@ -77,7 +77,7 @@ class DataBase():
 
     def delete_exercise(self,id):
         """Deletes exercise from database"""
-        self.cursor.execute("DELETE * FROM exercises WHERE id=\"%s\"" % id)
+        self.cursor.execute("DELETE FROM exercises WHERE id=\"%s\"" % id)
         self.conn.commit()
 
     def get_all_exercises():

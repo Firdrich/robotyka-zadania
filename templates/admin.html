@@ -3,8 +3,8 @@
 {% if session["admin"] %}
 
     <h1>Istniejace zadania</h1>
-    {% for i in posts.length %} <!--przeslac posts.length i posts(headers) -->
-        <form method="DELETE" action="/admin"><div>{{ posts[i]}}</div><button name="{{posts[i]}}" type="submit">Usuń</button></form>
+    {% for i in range(titles|length) %} <!--przeslac posts.length i posts(headers) -->
+      <div><div style="display: inline-block;">{{times[i]}}</div>  <form method="post" action="/posts/{{id[i]}}" style="display: inline-block;"><div style="display: inline-block;">{{titles[i]}}</div><div style="display: inline-block;">{{content[i]}}</div><button name="{{id[i]}}" type="submit">Usuń</button></form></div>
     {% endfor %}
     {% with messages = get_flashed_messages() %}
         {% if messages[0] == "Successfully deleted" %}
@@ -14,12 +14,11 @@
 
     <h1> Dodaj nowe zadanie</h1>
     <form method="POST" action="/admin">
-    <label>Nazwa zadania</label><input name="header" type="text">
-    <label>Treść Zadania</label><input name="content" type="textarea">
-    <label>Czas do ukazania odpowiedzi (w godzinach):</label><input name="time" type="number">
+    <input class="inputs_login" placeholder="Nazwa zadania" name="header" type="text">
+    <input class="inputs_login" placeholder="Treść zadania" name="content" type="textarea">
+    <input class="inputs_login" placeholder="Czas do ukazania zadania (w godzinach):" name="time" type="number">
     <button type="submit" name="new_post">Dodaj!</button>
-
-    </form>
+  </form>
     {% with messages = get_flashed_messages() %}
         {% if messages[0] == "Successfully added" %}
             <div class="message succes setting_message"> {{ messages[0] }} </div>

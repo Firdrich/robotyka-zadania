@@ -28,6 +28,8 @@ def login():
 			print(db.get_user_admin(username))
 			if db.get_user_admin(username) == 1:
 				session['admin'] = True
+			else:
+				session['admin'] = False
 			return render_template('index.html')
 		else:
 			session['logged_in'] = False
@@ -54,7 +56,8 @@ def register():
 
 @app.route('/logout',methods=['GET'])
 def logut():
-	session['logged_in'] = False
+	#session['logged_in'] = False
+	session.clear()
 	return redirect(url_for('index'))
 
 @app.route('/settings',methods=['GET','POST'])
@@ -109,17 +112,22 @@ def del_post(id):
 
 @app.route('/admin', methods=['GET','POST'])
 def admin():
-	db = DataBase()
-	if request.method == 'POST': 	#if new exercise is added through form
-		exercise_header = request.form.get('header')
-		exercise_content = request.form.get('content')
-		exercise_time = request.form.get('time')
-		db.add_exercise(exercise_time, exercise_content, exercise_header) #adds new exercise according to form
-	times = db.get_exercise_time()
-	content = db.get_exercise_content()
-	titles = db.get_exercise_titles()
-	id = db.get_exercise_id()
-	return render_template('admin.html',times=times, content=content, titles=titles, id=id)
+	try:
+		if session['admin'] == True:
+			db = DataBase()
+			if request.method == 'POST': 	#if new exercise is added through form
+				exercise_header = request.form.get('header')
+				exercise_content = request.form.get('content')
+				exercise_time = request.form.get('time')
+				db.add_exercise(exercise_time, exercise_content, exercise_header) #adds new exercise according to form
+			times = db.get_exercise_time()
+			content = db.get_exercise_content()
+			titles = db.get_exercise_titles()
+			id = db.get_exercise_id()
+			print(session['admin'])
+			return render_template('admin.html',times=times, content=content, titles=titles, id=id)
+	except KeyError:
+		return render_template('notlogin.html')
 #@app.route('/profiledata',methods=['GET','POST'])
 #def profiledata():
 

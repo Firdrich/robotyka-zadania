@@ -1,25 +1,31 @@
-body{
+body {
 	font-family: Arial !important;
 	margin: 0;
-
 }
 
-*, ::after, ::before{
+*,
+::after,
+::before {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-#conteiner{
-	padding-top: 70px;
-	width: 900px;
+#conteiner {
+	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.align-center{
+.align-center {
 	text-align: center;
 }
 
-.when_login_logout{
+.align-center>h1 {
+	margin: 20px 0;
+}
+
+.when_login_logout {
 	padding: 40px;
 	font-size: 30px !important;
 
@@ -27,32 +33,31 @@ body{
 
 /* *** NAVBAR *** */
 
-#nav{
- 	background-color: #333;
- 	position: fixed;
- 	width: 100%;
- 	height: 70px;
- 	
+#nav {
+	background-color: #333;
+	width: 100%;
+	height: 70px;
+
 }
 
-#nav ul{
-    list-style-type: none;
-    font-size: 25px;
-    margin: 0;
+#nav ul {
+	list-style-type: none;
+	font-size: 25px;
+	margin: 0;
 	padding: 0;
 }
 
-#nav li{
+#nav li {
 	display: inline-block;
 }
 
 /* Floating left in navbar */
-.li-right{
+.li-right {
 	float: right;
 }
 
 /* Links in navbar */
-#nav a{
+#nav a {
 	display: inline-block;
 	text-align: center;
 	width: 100px;
@@ -63,30 +68,30 @@ body{
 }
 
 /* Home button link */
-#home a{
+#home a {
 	font-size: 30px !important;
 }
 
 /* Mouse on Home button */
-#home a:hover{
-	color:black !important;
+#home a:hover {
+	color: black !important;
 }
 
 /* Register button link */
-#register a{
+#register a {
 	width: 120px !important;
 }
 
 /* Mouse on link style */
 #nav a:hover {
-    background-color: white;
-    color: gray;
+	background-color: white;
+	color: gray;
 }
 
 /* *** Style for login/register page *** */
 
 
-.inputs_login{
+.inputs_login {
 	width: 450px;
 	padding: 10px;
 	border: 1px solid gray;
@@ -94,7 +99,7 @@ body{
 	font-size: 17px;
 }
 
-.buttons_login{
+.buttons_login {
 	width: 450px;
 	padding: 10px;
 	border: 1px solid #3399ff;
@@ -104,12 +109,12 @@ body{
 	font-size: 25px;
 }
 
-.buttons_login:hover{
+.buttons_login:hover {
 	background-color: #0099ff;
 }
 
 /* Style of messege*/
-.message{
+.message {
 	width: 450px;
 	padding: 10px;
 	border: 1px solid #ffcc66;
@@ -122,13 +127,13 @@ body{
 	text-align: center;
 }
 
-.succes{
+.succes {
 	border-color: #009900;
 	background-color: #33cc33;
 	color: #333300;
 }
 
-.failed{
+.failed {
 	border-color: #ff0000;
 	background-color: #ff5050;
 	color: #800000;
@@ -136,20 +141,21 @@ body{
 
 /* *** Style of settings page *** */
 
-#settings{
+#settings {
 	font-size: 20px !important;
 }
 
-#settings form{
+#settings form {
 	margin: 5px;
 }
 
-#settings h2{
+#settings h2 {
 	text-align: left;
 	margin-left: 30%;
+	margin-top: 50px;
 }
 
-#settings label{
+#settings label {
 	margin-left: 35%;
 	width: 150px;
 	display: block;
@@ -157,7 +163,7 @@ body{
 	padding: 7px;
 }
 
-#settings input{
+#settings input {
 	width: 170px;
 	margin: 5px;
 	padding: 5px;
@@ -165,7 +171,7 @@ body{
 	border-radius: 5px;
 }
 
-#settings button{
+#settings button {
 	margin-left: 55%;
 	margin-top: 10px;
 	padding: 4px 8px;
@@ -177,21 +183,111 @@ body{
 
 }
 
-#age{
+#age {
 	width: 50px !important;
 }
 
-#settings input[type="radio"]{
+#settings input[type="radio"] {
 	width: 20px;
 	margin: 12px 2px 11px 5px;
 }
 
-#settings span{
+#settings span {
 	font-size: 15px;
 	padding: 10px 5px 10px 0px;
 }
 
 .setting_message {
-	margin-left: 33%;	
+	margin-left: 33%;
 	margin-top: 10px;
+}
+
+
+/* Admin page */
+
+#admin {
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-bottom: 50px;
+}
+
+#admin h1:first-child {
+	text-align: center;
+	font-size: 45px;
+	padding: 30px 0;
+}
+
+#admin table {
+	border-spacing: 0;
+
+	margin-bottom: 40px;
+	font-size: 15px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+
+#admin tbody tr,
+#admin tbody th,
+#admin tbody td {
+	border: 1px black solid;
+	padding: 5px 10px;
+}
+
+#admin tbody th {
+	border: 2px black solid;
+	font-size: 22px;
+	line-height: 30px;
+
+}
+
+#admin tbody td:first-child {
+	font-size: 20px;
+	text-align: center;
+}
+
+#admin tbody td:nth-of-type(3) {
+	width: 150px;
+}
+
+#admin tbody th:first-child {
+	border-top-left-radius: 10px;
+}
+
+#admin tbody th:last-child {
+	border-top-right-radius: 10px;
+}
+
+#admin tbody tr td:last-child {
+	border-bottom: 1px black solid;
+}
+
+#admin button {
+	background-color: transparent;
+	padding: 10px 10px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+#admin button#dodaj {
+	display: block;
+	padding: 12px 18px;
+	margin-top: 5px;
+	background-color: black;
+	color: white;
+	border-radius: 10px;
+}
+
+#admin form input {
+	margin: 4px 0;
+}
+
+#admin h1 {
+	margin-bottom: 15px;
+}
+
+#admin textarea {
+	max-width: 450px;
+	min-width: 200px;
 }

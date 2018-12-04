@@ -4,29 +4,29 @@
 <div id="settings">
     <h2>Profile Data</h2>
     <form action="/settings" method="POST">
-        <label for="name">Name</label><input class="" name="name" placeholder="{{ profile.name }}"  type="text"><br>
+        <label for="name">Name</label><input class="" name="name" placeholder="{{ profile.name }}" type="text"><br>
         <label for="surname">Surname</label><input class="" name="surname" placeholder="{{ profile.surname }}" type="text"><br>
-        <label for="age">Age</label><input class="" name="age" placeholder="{{ profile.age }}"  type="number" id="age"><br>
+        <label for="age">Age</label><input class="" name="age" placeholder="{{ profile.age }}" type="number" id="age"><br>
         <label>Sex</label>
-        <input type="radio" name="sex" value="male" {% if profile.sex == "male" %} checked="checked" {% endif %}><span>Male</span>
-        <input type="radio" name="sex" value="female" {% if profile.sex == "female" %} checked="checked" {% endif %}><span>Female</span>
+        <input type="radio" name="sex" value="male" {% if profile.sex=="male" %} checked="checked" {% endif %}><span>Male</span>
+        <input type="radio" name="sex" value="female" {% if profile.sex=="female" %} checked="checked" {% endif %}><span>Female</span>
         <button name="ProfileData" type="submit">Submit</button>
     </form>
     {% with messages = get_flashed_messages() %}
-        {% if messages[0] == "Successfully changed informations" %}
-            <div class="message succes setting_message"> {{ messages[0] }} </div>
-        {% endif %}
+    {% if messages[0] == "Successfully changed informations" %}
+    <div class="message succes setting_message"> {{ messages[0] }} </div>
+    {% endif %}
     {% endwith %}
 
     <h2>Change email</h2>
     <form action="/settings" method="POST">
-            <label>New email</label><input class="" name="email" placeholder="{{ profile.email }}" type="email"><br>
-            <button name="ChangeMail" type="submit">Submit</button>
+        <label>New email</label><input class="" name="email" placeholder="{{ profile.email }}" type="email"><br>
+        <button name="ChangeMail" type="submit">Submit</button>
     </form>
     {% with messages = get_flashed_messages() %}
-        {% if messages[0] == "Successfully changed mail" %}
-            <div class="message succes setting_message"> {{ messages[0] }} </div>
-        {% endif %}
+    {% if messages[0] == "Successfully changed mail" %}
+    <div class="message succes setting_message"> {{ messages[0] }} </div>
+    {% endif %}
     {% endwith %}
 
     <h2>Change password</h2>
@@ -37,14 +37,14 @@
         <button name="ChangePassword" type="submit">Submit</button>
     </form>
 </div>
-    {% with messages = get_flashed_messages() %}
-        {% if messages[0] == "Successfully changed password" %}
-            <div class="message succes setting_message"> {{ messages[0] }} </div>
-        {% elif messages[0] == "Passwords are not the same" or messages[0] == "You typed wrong password" %}
-            <div class="message failed setting_message"> {{ messages[0] }} </div>
-        {% endif %}
-    {% endwith %}
+{% with messages = get_flashed_messages() %}
+{% if messages[0] == "Successfully changed password" %}
+<div class="message succes setting_message"> {{ messages[0] }} </div>
+{% elif messages[0] == "Passwords are not the same" or messages[0] == "You typed wrong password" %}
+<div class="message failed setting_message"> {{ messages[0] }} </div>
+{% endif %}
+{% endwith %}
 {% else %}
-    {% include 'notlogin.html' %}
+{% include 'notlogin.html' %}
 {% endif %}
 {% endblock %}

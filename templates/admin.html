@@ -1,33 +1,57 @@
 {% extends 'layout.html' %}
 {% block body %}
 {% if session["admin"] %}
+<div id="admin">
+    <h1>Admin Panel</h1>
 
     <h1>Istniejace zadania</h1>
-    {% for i in range(titles|length) %} <!--przeslac posts.length i posts(headers) -->
-      <div><div style="display: inline-block;">{{times[i]}}</div>  <form method="post" action="/admin/{{id[i]}}" style="display: inline-block;"><div style="display: inline-block;">{{titles[i]}}</div><div style="display: inline-block;">{{content[i]}}</div><button name="{{id[i]}}" type="submit">Usuń</button></form></div>
-    {% endfor %}
+
+
+
+    <table>
+        <tr>
+            <th>Czas[H]</th>
+            <th>Nazwa</th>
+            <th>Kontent</th>
+            <th>Usun</th>
+        </tr>
+        {% for i in range(titles|length) %}
+        <tr>
+            <td>{{times[i]}}</td>
+            <form method="post" action="/admin/{{id[i]}}" style="display: inline-block;">
+                <td>{{titles[i]}}</td>
+                <td><a href="#">Link do zadania</a></td>
+                <td><button name="{{id[i]}}" type="submit">Usuń</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
     {% with messages = get_flashed_messages() %}
-        {% if messages[0] == "Successfully deleted" %}
-            <div class="message succes setting_message"> {{ messages[0] }} </div>
-        {% endif %}
+    {% if messages[0] == "Successfully deleted" %}
+    <div class="message succes setting_message"> {{ messages[0] }} </div>
+    {% endif %}
     {% endwith %}
 
     <h1> Dodaj nowe zadanie</h1>
-    <form method="POST" action="/admin">
-    <input class="inputs_login" placeholder="Nazwa zadania" name="header" type="text">
-    <input class="inputs_login" placeholder="Treść zadania" name="content" type="textarea">
-    <input class="inputs_login" placeholder="Czas do ukazania zadania (w godzinach):" name="time" type="number">
-    <button type="submit" name="new_post">Dodaj!</button>
-  </form>
+    <form method="POST" action="/admin" id="zadania">
+        <input class="inputs_login" placeholder="Nazwa zadania" name="header" type="text">
+        <!--<input class="inputs_login" placeholder="Treść zadania" name="content" type="textarea">-->
+        <textarea class="inputs_login" name="content" form="zadania" placeholder="Tresc zadania"></textarea>
+        <input class="inputs_login" placeholder="Czas do ukazania zadania (w godzinach):" name="time" type="number">
+        <button type="submit" name="new_post" id="dodaj">Dodaj!</button>
+    </form>
     {% with messages = get_flashed_messages() %}
-        {% if messages[0] == "Successfully added" %}
-            <div class="message succes setting_message"> {{ messages[0] }} </div>
-        {% elif messages[0] == "Empty field" %}
-            <div class="message failed setting_message"> {{ messages[0] }} </div>
-        {% endif %}
+    {% if messages[0] == "Successfully added" %}
+    <div class="message succes setting_message"> {{ messages[0] }} </div>
+    {% elif messages[0] == "Empty field" %}
+    <div class="message failed setting_message"> {{ messages[0] }} </div>
+    {% endif %}
     {% endwith %}
-
+</div>
 {% else %}
-    {% include 'notlogin.html' %}
+{% include 'notlogin.html' %}
 {% endif %}
 {% endblock %}

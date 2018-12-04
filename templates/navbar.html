@@ -1,26 +1,26 @@
 <nav id="nav">
     <ul>
-    	<li id="home">
-    		<a href="/">Home</a>
-    	</li>
+        <li id="home">
+            <a href="/">Home</a>
+        </li>
         {% if session['logged_in'] == true %}
         <li class="li-right">
-        	<a href="/logout">Logout</a>
+            <a href="/logout">Logout</a>
         </li>
         <li class="li-right">
             <a href="/settings">Settings</a>
         </li>
-          {% if session['admin'] == true %}
-            <li class="li-right">
-                <a href="/admin">Admin</a>
-            </li>
-          {% endif %}
+        {% if session['admin'] == true %}
+        <li class="li-right">
+            <a href="/admin">Admin</a>
+        </li>
+        {% endif %}
         {% else %}
         <li class="li-right" id="register">
-        	<a href="/register">Register</a>
+            <a href="/register">Register</a>
         </li>
         <li class="li-right" id="login">
-        	<a href="/login">Login</a>
+            <a href="/login">Login</a>
         </li>
         {% endif %}
     </ul>

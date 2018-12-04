@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-	<div class="align-center">
+<div class="align-center">
     {% if session['logged_in'] == true %}
     Zalogowany!
     {% else %}
     Wylogowany!
     {% endif %}
-	</div>
+</div>
 {% endblock %}

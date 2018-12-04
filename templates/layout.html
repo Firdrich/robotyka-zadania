@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" media="screen, projection">
-  </head>
-  <body>
-    {% include 'navbar.html' %}
-    <div id="conteiner">
-        {% block body %}{% endblock %}
-    </div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" media="screen, projection">
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  <div id="conteiner">
+    {% block body %}{% endblock %}
+  </div>
+</body>
+
 </html>

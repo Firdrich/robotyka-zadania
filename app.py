@@ -3,6 +3,7 @@ from database import DataBase
 from profile import Profile
 from flask_session import Session
 import sys
+import time
 
 #configuring stuff
 app = Flask(__name__)
@@ -103,12 +104,15 @@ def settings():
 
 	return render_template('settings.html', profile = profile)
 
-@app.route('/posts/<id>', methods=['POST'])
+@app.route('/admin/<id>', methods=['POST'])
 def del_post(id):
-	db = DataBase()
-	db.delete_exercise(id)
-	return redirect(url_for('admin'))
-
+	try:
+		if session['admin'] == True:
+			db = DataBase()
+			db.delete_exercise(id)
+			return redirect(url_for('admin'))
+	except KeyError:
+		return render_template('notlogin.html')
 
 @app.route('/admin', methods=['GET','POST'])
 def admin():
@@ -128,8 +132,43 @@ def admin():
 			return render_template('admin.html',times=times, content=content, titles=titles, id=id)
 	except KeyError:
 		return render_template('notlogin.html')
-#@app.route('/profiledata',methods=['GET','POST'])
-#def profiledata():
+
+@app.route('/exercises', methods=['GET','POST'])
+def exercises(): #Simply displays exercises
+	db = DataBase()
+	content = db.get_exercise_content()
+	titles = db.get_exercise_titles()
+	id = db.get_exercise_id()
+	return render_template('exercises.html', titles=titles, content=content, id=id)
+
+@app.route('/exercises/<id>', methods=['POST']) #Beggining exercise through start_exercise() in database.py
+def begin_exercise(id):
+	db = DataBase()
+	user = db.get_user_id(session['username'])
+	exercise = db.get_exercise(id) #gets list of one exercise entries by id
+	exercise_id = exercise[0]
+	exercise_time = exercise[1] * 3600 #takes time from database and converts to hours
+	date = int(time.time()) #takes systemtime
+	db.start_exercise(user, exercise_id, exercise_time, date)
+	return redirect(url_for('exercises'))
+
+@app.route('/exercises/answers/<id>', methods=['POST']) #Display an answer to exercise
+def answers(id):
+	#WARNING DATABASE NOT UPDATED TO SUPPORT THIS!!!
+	work_in_progress = True
+	if work_in_progress == True:
+		return "Work in Progress"
+	db = Database()
+	user = db.get_user_id(session['username'])
+	exercise_time = get_time_till_answer(user, id) #gets time to unlock exercise
+	if exercise_time < int(time.time()): #if current system time is bigger than time from database
+		answer = get_exercise_answer(id)
+		return render_template('exercise.html', answer=answer) #return template with answer to exercise
+	else:
+		return render_template('notyet.html') #else return template without an answer
+
+
+
 
 if __name__ == '__main__':
 	app.secret_key = "jdu7x3j8e83iej7eeh8e"

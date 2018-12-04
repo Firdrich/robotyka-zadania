@@ -120,3 +120,28 @@ class DataBase():
         time_answers = self.cursor.fetchall()
         time_answers = list(map(lambda id_tuple: id_tuple[0], time_answers))
         return time_answers
+
+    def getone_exercise_time(id):
+        """Gets time of one exercise from exercises"""
+        self.cursor.execute("SELECT time_answers FROM exercises WHERE id=\"%s\"" % id)
+        time_answers = self.cursor.fetchone()[0]
+        return time_answers
+
+    def start_exercise(self, user_id, exercise_id, exercise_time, system_time):
+        """Matches user to exercise, takes time calculates and adds to database"""
+        time_till_answer = system_time + exercise_time
+        self.cursor.execute("INSERT INTO user_exercises(user, exercise, unlock_day) VALUES(\"%s\", \"%s\", \"%s\")" % (user_id, exercise_id, time_till_answer))
+        self.conn.commit()
+
+    def get_time_till_answer(self, user, exercise):
+        """Gets time the exercise's answer unlocks"""
+        self.cursor.execute("SELECT unlock_day FROM user_exercises WHERE user=\"%s\" AND exercise=\"%s\"" % (user, exercise))
+        time = self.cursor.fetchone()[0]
+        return time
+
+    def get_exercise_answer(self, id):
+        """Gets answer of the exercise"""
+        #WARNING DATABASE NOT UPDATED TO SUPPORT THIS
+        self.cursor.execute("SELECT answer FROM exercises WHERE id=\"%s\"" % id)
+        answer = self.cursor.fetchone()[0]
+        return answer

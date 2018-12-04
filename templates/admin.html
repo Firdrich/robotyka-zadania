@@ -4,7 +4,7 @@
 
     <h1>Istniejace zadania</h1>
     {% for i in range(titles|length) %} <!--przeslac posts.length i posts(headers) -->
-      <div><div style="display: inline-block;">{{times[i]}}</div>  <form method="post" action="/posts/{{id[i]}}" style="display: inline-block;"><div style="display: inline-block;">{{titles[i]}}</div><div style="display: inline-block;">{{content[i]}}</div><button name="{{id[i]}}" type="submit">Usuń</button></form></div>
+      <div><div style="display: inline-block;">{{times[i]}}</div>  <form method="post" action="/admin/{{id[i]}}" style="display: inline-block;"><div style="display: inline-block;">{{titles[i]}}</div><div style="display: inline-block;">{{content[i]}}</div><button name="{{id[i]}}" type="submit">Usuń</button></form></div>
     {% endfor %}
     {% with messages = get_flashed_messages() %}
         {% if messages[0] == "Successfully deleted" %}

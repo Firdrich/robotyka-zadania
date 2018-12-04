@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+<!-- Na razie przeklejam slepo kod z admin.html oraz daje link do /exercise/answers jako href do tytulu, to sobie zmien jak uwazasz ze bedzie dobrze :v -->
+{% block body %}
+{% if session["admin"] %}
+
+    <h1>Istniejace zadania</h1>
+    {% for i in range(titles|length) %} <!--przeslac posts.length i posts(headers) -->
+      <div><form method="post" action="/exercises/{{id[i]}}" style="display: inline-block;"><div style="display: inline-block;"><a href="/exercises/answers/{{id[i]}}">{{titles[i]}}</a></div><div style="display: inline-block;">{{content[i]}}</div><button name="{{id[i]}}" type="submit">Rozpocznij zadanie</button></form></div>
+    {% endfor %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages[0] == "Successfully deleted" %}
+            <div class="message succes setting_message"> {{ messages[0] }} </div>
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}
